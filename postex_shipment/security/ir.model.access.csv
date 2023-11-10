@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_postex_payment_method_users,delivery.carrier.postex.service,model_postex_payment_method,,1,0,0,0
+
+access_postex_product_type_users,delivery.carrier.postex.product.type,model_postex_product_type,,1,0,0,0
+
+access_postex_product_group_users,delivery.carrier.postex.product.group,model_postex_product_group,,1,0,0,0
+
+access_postex_service_users,delivery.carrier.postex.service,model_postex_service,,1,0,0,0

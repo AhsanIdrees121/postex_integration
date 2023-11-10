@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="postex_wizard_form" model="ir.ui.view">
+            <field name="name">postex.wizardform</field>
+            <field name="model">postex.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                            <field name="sender_multi_ship" string="Create Seperate Shipment for Every Package"/>
+                            <label for="sender_multi_ship" string="Create Seperate Shipment for Every Package" />
+                        <group>
+                            <group string="Shipper Details">
+                                <label for="sender_name" string="Name"/>
+                                <div>
+                                    <field name="sender_title" style="width: 24%%" help="Title e.g. Mr." string="Title"/>
+                                    <field name="sender_name" required="1" style="width: 76%%" placeholder="Shipper Name" help="Sender Name" string="Name"/>
+                                </div>
+                                <field name="sender_company_name" required="1" placeholder="Sender Company Name" help="Sender Company Name" string="Company Name"/>
+                                <label for="sender_phone1" string="Phone1"/>
+                                <div>
+                                    <field name="sender_phone1" style="width: 70%%" required="1" placeholder="Phone Number 1"  help="Sender Phone 1"/>
+                                    <field name="sender_phone1_ext" style="width: 29%%" placeholder="Extension"  help="Extension for Phone 1"/>
+                                </div>
+                                <label for="sender_phone2" string="Phone2"/>
+                                <div>
+                                    <field name="sender_phone2" style="width: 70%%" placeholder="Phone Number 2" help="Sender Phone 2"/>
+                                    <field name="sender_phone2_ext" style="width: 29%%" placeholder="Extension" help="Extension for Phone 1"/>
+                                </div>
+                                <field name="sender_fax_number" placeholder="Fax Number" help="Sender Fax" string="Fax"/>
+                                <field name="sender_mobile" required="1" placeholder="Mobile Number" help="Sender Mobile Number" string="mobile"/>
+                                <field name="sender_street1" required="1" placeholder="Email" help="Sender Email" string="Email"/>
+                                <label for="sender_street1" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="sender_street1" required="1" placeholder="Line 1..." class="o_address_street" help="Sender Address"/>
+                                    <field name="sender_street2" placeholder="Line 2..." class="o_address_street"/>
+                                    <field name="sender_street3" placeholder="Line 3..." class="o_address_street"/>
+                                    <field name="sender_city" placeholder="City" class="o_address_city" required="1" style="width:66%%" help="Sender City"/>
+                                    <field name="sender_zip" placeholder="ZIP" class="o_address_city" required="1" style="width:30%%" help="Sender ZIP or PIN Code"/>
+                                    <field name="sender_state" class="o_address_country" placeholder="State or Province Code" required="1" help="Sender State or Province Code"/>
+                                    <field name="sender_country" placeholder="Country" class="o_address_country" required="1" help="Sender Country"/>
+                                </div>
+                            </group>
+                            <group string="Receiver/Customer Details">
+                                <label for="receiver_name" string="Name" placeholder="Mr."/>
+                                <div>
+                                    <field name="receiver_title" style="width: 26%%" help="Title e.g. Mr."/>
+                                    <field name="receiver_name" required="1" style="width: 73%%" placeholder="Receiver/Customer Name" help="Receiver Name"/>
+                                </div>
+                                <field name="receiver_company_name" required="1" placeholder="Company Name" help="Receiver Company Name" string="Company Name"/>
+                                <label for="receiver_phone1" string="Phone1"/>
+                                <div>
+                                    <field name="receiver_phone1" style="width: 70%%" required="1" placeholder="Phone Number 1" help="Receiver Phone 1"/>
+                                    <field name="receiver_phone2_ext" style="width: 29%%" placeholder="Extension" help="Extension For Phone 1"/>
+                                </div>
+                                <label for="receiver_phone2" string="Phone2"/>
+                                <div>
+                                    <field name="receiver_phone2" style="width: 70%%" placeholder="Phone Number 2" help="Receiver Phone 2"/>
+                                    <field name="sender_phone2_ext" style="width: 29%%" placeholder="Extension" help="Extension For Phone 2"/>
+                                </div>
+                                <field name="receiver_fax_number" placeholder="Fax Number" help="Receiver Fax" string="Fax"/>
+                                <field name="receiver_mobile" required="1" placeholder="Mobile Number" help="Receiver Mobile Number" string="Mobile"/>
+                                <field name="receiver_email" required="1" placeholder="Email" help="Receiver Email" string="Email"/>
+                                <label for="receiver_street1" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="receiver_street1" required="1" placeholder="Line 1..." class="o_address_street" help="Receiver Address"/>
+                                    <field name="receiver_street2" placeholder="Line 2..." class="o_address_street"/>
+                                    <field name="receiver_street3" placeholder="Line 2..." class="o_address_street"/>
+                                    <field name="receiver_city" placeholder="City" class="o_address_city" required="1" style="width:66%%" help="Receiver City"/>
+                                    <field name="receiver_zip" placeholder="ZIP" class="o_address_city" required="1" style="width:30%%" help="Receiver ZIP or PIN Code"/>
+                                    <field name="receiver_state" class="o_address_country" placeholder="State or Province Code" required="1" help="Receiver State or Province Code"/>
+                                    <field name="receiver_country" placeholder="Country" class="o_address_country" required="1" help="Receiver Country"/>
+                                </div>
+                            </group>
+                        </group>
+                        <field name="is_product_type_is_dutiable" invisible="1"/>
+                        <group string="Shipment Information">
+                            <group>
+                                <label for="total_weight"/>
+                                <div>
+                                    <field name="total_weight" style="width:40%%" required="1" help="Total weight of shipment."/>
+                                    <field name="delivery_uom" style="width:60%%" readonly="1" required="1" help="Weight unit."/>
+                                </div>
+                                <label for="total_qty"/>
+                                <div>
+                                    <field name="total_qty" placeholder="Total Quantity" class="oe_inline" required="1" readonly="1"  help="Total number of piece(s) of product in shipment."/>
+                                    <span class="label label-primary oe_inline">Piece(s).</span>
+                                </div>
+                                <field name="shipment_ref1" required="1"  help="Shipment Reference 1 or Odoo Picking Reference."/>
+                                <field name="shipment_ref2" help="Shipment Reference 2 or Odoo order Reference."/>
+                                 <field name="pickup_location" help="The location from where the shipment should be picked up, such as the reception desk."/>
+                                <field name="operation_instaruction" help="Instructions on how to handle the shipment."/>
+                                <field name="description_of_goods" required="1" help="The Nature of Shipment Contents. Example: Clothes, Electronic Gadgets ..."/>
+                                <field name="comments" help="Any comments on the shipment"/>
+                            </group>
+                            <group>
+                                <field name="product_type" required="1" help="POSTEX product type."/>
+                                <field name="service_type" required="0" help="POSTEX service type."/>
+                                <field name="payment_type" required="1" help="POSTEX payment type."/>
+                                <label for="cod_amount"/>
+                                <div>
+                                    <field name="cod_amount" style="width:40%%" attrs="{'required':[('service_type', '=', 'CODS')]}" help='COD amount. It must be positive if you have selected "Cash On Delivery" as service type.'/>
+                                    <field name="cod_currency" style="width:60%%" attrs="{'required':[('service_type', '=', 'CODS')]}" help="For International COD amount should be in USD currency, For Domestic use corresponding country currency."/>
+                                </div>
+                                <label for="custom_amount"/>
+                                <div>
+                                    <field name="custom_amount" style="width:40%%" attrs="{'required':[('is_product_type_is_dutiable', '=', True)]}" help='Custom amount. It must be positive if you have selected "Dutiable Type Product" as product type. Product type "PPX, DPX, GPX, EPX" are dutiable.'/>
+                                    <field name="custome_currency" style="width:60%%" attrs="{'required':[('is_product_type_is_dutiable', '=', True)]}" help="Currency"/>
+                                </div>
+                                <label for="insurance_amount" attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                <div>
+                                    <field name="insurance_amount" style="width:40%%" help='Insurance amount if any.' attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+				     <field name="insurance_currency" style="width:60%%" help="Currency"/>
+                                </div>
+
+                                <label for="consienment_length" attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                <div>
+                                    <field name="consienment_length" style="width:40%%" help='Length of Package' attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                </div>
+
+                                <label for="consienment_width"  attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                <div>
+                                    <field name="consienment_width" style="width:40%%" help='Width of Package' attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                </div>
+
+                                <label for="consienment_height"  attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}" />
+                                <div>
+                                    <field name="consienment_height" style="width:40%%" help='Height of Package' attrs="{'invisible' :[('sender_multi_ship' , '=' , True)]}"  />
+                                </div>
+
+
+
+                               <!--  <label for="collect_amount"/>
+                                <div>
+                                    <field name="collect_amount" style="width:70%%"/>
+                                    <field name="collect_currency" style="width:30%%"/>
+                                </div>  -->
+                                <!-- <label for="cash_additional_amount"/>
+                                <div>
+                                    <field name="cash_additional_amount" style="width:70%%"/>
+                                    <field name="cash_additional_currency" style="width:30%%"/>
+                                </div> -->
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="apply" type="object" string="Create Shipment" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

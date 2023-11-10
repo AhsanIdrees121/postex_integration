@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record forcecreate="True" id="product_group_exp" model="postex.product.group">
+            <field name="name">Express</field>
+            <field name="code">EXP</field>
+            <field name="description">Express Shipping</field>
+        </record>
+        <record forcecreate="True" id="product_group_dom" model="postex.product.group">
+            <field name="name">Domestic</field>
+            <field name="code">DOM</field>
+            <field name="description">Domestic Shipping</field>
+        </record>
+
+        <record forcecreate="True" id="postex_product_service_CODS" model="postex.service">
+            <field name="name">Cash on Delivery</field>
+            <field name="code">CODS</field>
+            <field name="description">Receiver pays the cost of the goods.</field>
+        </record>
+        <record forcecreate="True" id="postex_product_service_FIRST" model="postex.service">
+            <field name="name">First Delivery </field>
+            <field name="code">FIRST</field>
+            <field name="description">Committed delivery time at destination country.</field>
+        </record>
+        <record forcecreate="True" id="postex_product_service_FRDOM" model="postex.service">
+            <field name="name">Free Domicile </field>
+            <field name="code">FRDOM</field>
+            <field name="description">Sender pays part/or all of the customs charges and the receiver consignee doesn’t pay anything of the shipping or handling charges.</field>
+        </record>
+        <record forcecreate="True" id="postex_product_service_HFPU" model="postex.service">
+            <field name="name">Hold for pick up  </field>
+            <field name="code">HFPU</field>
+            <field name="description">Receiver picks up the consignment from an POSTEX/Partner facility.</field>
+        </record>
+        <record forcecreate="True" id="postex_product_service_NOON" model="postex.service">
+            <field name="name"> Noon Delivery </field>
+            <field name="code">NOON</field>
+            <field name="description">Committed delivery time BEFORE Noon at destination country.</field>
+        </record>
+        <record forcecreate="True" id="postex_product_service_SIG" model="postex.service">
+            <field name="name">Signature Required</field>
+            <field name="code">SIG</field>
+            <field name="description">Physical receiver signature required upon delivery.</field>
+        </record>
+
+        <record forcecreate="True" id="product_type_PDX" model="postex.product.type">
+            <field name="name">Priority Document Express(PDX)</field>
+            <field name="code">PDX</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">Urgent, time sensitive consignments containing printed matter or document material.</field>
+        </record>
+        <record forcecreate="True" id="product_type_PPX" model="postex.product.type">
+            <field name="name">Priority Parcel Express(PPX) </field>
+            <field name="code">PPX</field>
+            <field name="is_dutiable" eval="1"></field>
+            <field name="description">Urgent, time sensitive consignments containing non-printed matter or non-document material. </field>
+        </record>
+        <record forcecreate="True" id="product_type_PLX" model="postex.product.type">
+            <field name="name">Priority Letter Express(PLX) </field>
+            <field name="code">PLX</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">Urgent, time sensitive consignments containing printed matter of weight less than 0.5 kg.</field>
+        </record>
+        <record forcecreate="True" id="product_type_DDX" model="postex.product.type">
+            <field name="name">Deferred Document Express(DDX)</field>
+            <field name="code">DDX</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">2nd Day Delivery consignments containing printed matter or document material.</field>
+        </record>
+        <record forcecreate="True" id="product_type_DPX" model="postex.product.type">
+            <field name="name">Deferred Parcel Express(DPX) </field>
+            <field name="code">DPX</field>
+            <field name="is_dutiable" eval="1"></field>
+            <field name="description">2nd Day Delivery consignments containing nonprinted matter or non-document material.</field>
+        </record>
+        <record forcecreate="True" id="product_type_GDX" model="postex.product.type">
+            <field name="name">Ground Document Express(GDX)</field>
+            <field name="code">GDX</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">Ground delivery consignments containing printed matter or document material.</field>
+        </record>
+        <record forcecreate="True" id="product_type_GPX" model="postex.product.type">
+            <field name="name">Ground Parcel Express(GPX)</field>
+            <field name="code">GPX</field>
+            <field name="is_dutiable" eval="1"></field>
+            <field name="description">Ground Delivery consignments containing nonprinted matter or non-document material.</field>
+        </record>
+        <record forcecreate="True" id="product_type_EPX" model="postex.product.type">
+            <field name="name">Economy Parcel Express(EPX)</field>
+            <field name="code">EPX</field>
+            <field name="is_dutiable" eval="1"></field>
+            <field name="description">Non - Document/Printed Matter (Commercial) shipment irrespective of its weight.\n The word “Economy” represents the action of selling the products and services online, having POSTEX arrange the delivery locally and globally</field>
+        </record>
+
+        <record forcecreate="True" id="product_type_OND" model="postex.product.type">
+            <field name="name">OND For Product Group DOM (OND)</field>
+            <field name="code">OND</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">For Product Group: "DOM" </field>
+        </record>
+
+        <record forcecreate="True" id="product_type_ONP" model="postex.product.type">
+            <field name="name">ONP For Product Group DOM (ONP)</field>
+            <field name="code">ONP</field>
+            <field name="is_dutiable" eval="0"></field>
+            <field name="description">For Product Group: "DOM"</field>
+        </record>
+
+        <record forcecreate="True" id="postex_payment_method_prepaid" model="postex.payment.method">
+            <field name="name">Prepaid</field>
+            <field name="code">P</field>
+            <field name="description">Transportation Charges payable by shipper.</field>
+        </record>
+        <record forcecreate="True" id="postex_payment_method_collect" model="postex.payment.method">
+            <field name="name">Collect</field>
+            <field name="code">C</field>
+            <field name="description">Transportation Charges payable by consignee.</field>
+        </record>
+
+    </data>
+</odoo>

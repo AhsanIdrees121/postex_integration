@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record forcecreate="True" id="product_product_delivery_postex" model="product.product">
+            <field name="name">Delivery by POSTEX</field>
+            <field name="default_code">POSTEX_test</field>
+            <field name="type">service</field>
+            <field name="standard_price">0.0</field>
+            <field name="list_price">0.0</field>
+        </record>
+
+        <record forcecreate="True" id="product_packaging_delivery_postex" model="stock.package.type">
+            <field name="name">Product Packaging For POSTEX</field>
+            <field name="package_carrier_type">postex</field>
+            <field name="shipper_package_code">POSTEX</field>
+        </record>
+
+        <record id="postex_delivery_carrier_express_service" model="delivery.carrier">
+            <field name="name">POSTEX Express Shipping</field>
+            <!--            <field name="shipping_enable">1</field>-->
+            <field name="delivery_type">postex</field>
+            <!--            <field name="is_published">True</field>-->
+            <field name="product_id" ref="product_product_delivery_postex"/>
+            <field name="company_id" ref="base.main_company"/>
+            <!-- <field name="partner_id" ref="odoo_shipping_service_apps.shipping_partner"/> -->
+            <field name="postex_product_group_id" ref="product_group_dom"/>
+            <field name='postex_product_type_id' ref='product_type_OND'/>
+            <field name="postex_payment_method_id" ref="postex_payment_method_prepaid"/>
+
+        </record>
+
+        <record id="base.user_root" model="res.users">
+            <field name="groups_id" eval="[
+            (4, ref('base.group_multi_currency')),
+            (4, ref('stock.group_tracking_lot')),
+            (4, ref('stock.group_stock_manager')),
+            (4, ref('product.group_stock_packaging')),
+            (4, ref('product.group_sale_pricelist')),
+            ]"/>
+        </record>
+        <record id="base.group_user" model="res.groups">
+            <field name="name">Packaging</field>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('stock.group_tracking_lot'))]"></field>
+        </record>
+
+    </data>
+</odoo>

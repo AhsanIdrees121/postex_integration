@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_picking_view_form_inherit_stock_barcode" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='extra']/group/group[@name='other_infos']" position="inside">
+<!--                    <field name="postex_id"/>-->
+<!--                    <field name="is_label_printed" invisible="True"/>-->
+<!--                    <field name="is_return_label_printed" invisible="True"/>-->
+                </xpath>
+                <xpath expr="//notebook/page[@name='extra']/group/group[@name='other_infos']" position="after">
+                    <group>
+                        <field name="postex_receipt_number" attrs="{'invisible': [('delivery_type', '!=', 'postex')]}"/>
+                        <button class="btn btn-primary" type="object" name="get_tracking_history_postex"
+                                string="Order Status" attrs="{'invisible': [('delivery_type', '!=', 'postex')]}"/>
+                    </group>
+                    <group>
+                        <button class="btn btn-primary" type="object" name="get_payment_status_postex"
+                                string="Payment Status" attrs="{'invisible': [('delivery_type', '!=', 'postex')]}"/>
+                    </group>
+                </xpath>
+                <xpath expr="//button[@name='action_toggle_is_locked']" position="after">
+                    <button class="btn btn-primary" type="object" name="print_postex_label" string="Print POSTEX Label"
+                            attrs="{'invisible': ['|',('delivery_type', '!=', 'postex'),('state', '!=', 'done')]}"/>
+
+
+                    <button class="btn btn-primary" type="object" name="return_postex_label" string="Return Order"
+                            attrs="{'invisible': ['|',('delivery_type', '!=', 'postex'),('state', '!=', 'done')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+
+
+    <data>
+        <record id="wk_postex_delivery_carrier_inherit_form" model="ir.ui.view">
+            <field name="name">postex.delievry.carrier.form</field>
+            <field name="model">delivery.carrier</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="POSTEX Credentials" attrs="{'invisible':[('delivery_type' , '!=' , 'postex')]}">
+                        <group>
+                            <group>
+<!--                                <field name="postex_id"/>-->
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="postex_api_token"/>
+                                <field name="shipping_service_live"/>
+                                <field name="postex_connection_status"/>
+
+<!--                                <field name="postex_client_name"/>-->
+
+<!--                                <field name="postex_client_country"/>-->
+                            </group>
+                            <group>
+<!--                                <field name="postex_client_city"/>-->
+
+<!--                                <field name="postex_client_zip"/>-->
+
+<!--                                <field name="postex_client_address"/>-->
+
+                            </group>
+                        </group>
+                        <button class="btn btn-primary" type="object" name="get_client_credentials_postex" string="Get Credentials"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_product_type_form" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.product.type.form</field>
+            <field name="model">postex.product.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="is_dutiable"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_service_form" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.service.form</field>
+            <field name="model">postex.service</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_product_group_form" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.product.group.form</field>
+            <field name="model">postex.product.group</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_payment_method_form" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.payment.method.form</field>
+            <field name="model">postex.payment.method</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_product_type_tree" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.product.type.tree</field>
+            <field name="model">postex.product.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="contaier">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="is_dutiable"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_service_type_tree" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.service.tree</field>
+            <field name="model">postex.service</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="contaier">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_product_group_tree" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.product.group.tree</field>
+            <field name="model">postex.product.group</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="contaier">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="delivery_carrier_postex_payment_method_tree" model="ir.ui.view">
+            <field name="name">delivery.carrier.postex.payment.method.tree</field>
+            <field name="model">postex.payment.method</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="contaier">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="added_numberofbox_view_form" model="ir.ui.view">
+            <field name="name">choose.delivery.package.form</field>
+            <field name="model">choose.delivery.package</field>
+            <field name="inherit_id" ref="delivery.choose_delivery_package_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='weight_uom_name']" position="after">
+                    <group>
+                        <field name='length_postex'
+                               invisible="context.get('current_package_carrier_type') in ['fixed', 'base_on_rule','none']"/>
+                        <field name='width_postex'
+                               invisible="context.get('current_package_carrier_type') in ['fixed', 'base_on_rule','none']"/>
+                        <field name='height_postex'
+                               invisible="context.get('current_package_carrier_type') in ['fixed', 'base_on_rule','none']"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_delivery_carrier_postex_payment_method">
+            <field name="name">POSTEX Payment Method</field>
+            <field name="res_model">postex.payment.method</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="delivery_carrier_postex_payment_method_tree"/>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_delivery_carrier_postex_product_type">
+            <field name="name">POSTEX Product Type</field>
+            <field name="res_model">postex.product.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="delivery_carrier_postex_product_type_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_delivery_carrier_postex_service_type">
+            <field name="name">POSTEX Service List</field>
+            <field name="res_model">postex.service</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="delivery_carrier_postex_service_type_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_delivery_carrier_postex_product_group">
+            <field name="name">POSTEX Product Group List</field>
+            <field name="res_model">postex.product.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="delivery_carrier_postex_product_group_tree"/>
+        </record>
+
+
+    </data>
+</odoo>
